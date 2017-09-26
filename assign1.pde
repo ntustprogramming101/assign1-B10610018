@@ -1,5 +1,5 @@
 void setup() {
-	size(640, 480, P2D);
+	size(640, 480);
 	// Enter Your Setup Code Here
 }
 
