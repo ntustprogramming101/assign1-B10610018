@@ -1,5 +1,4 @@
 PImage bgImg, soilImg, lifeImg, groundhogImg, robotImg, soldierImg;
-int A = floor(random(4)+1);
 
 void setup() {
 	size(640, 480, P2D);
@@ -12,9 +11,9 @@ soldierImg = loadImage("img/soldier.png");
 
 }
 
-int soldierx=-80, soldiery=80+80*A, speedsoldierx=5,roboty=80+80*A;
-float robotx=random(160,560);
-float rayx=robotx, rayy=roboty+37, speedrayx=2;
+int soldierX=-80, soldierY=80+80*floor(random(4)+1), speedSoldierX=3,robotY=80+80*floor(random(4)+1);
+float robotX=random(160,560);
+float laserX=robotX+25, laserY=robotY+37, speedLaserX=2,laserLength;
 void draw() {
   // background
   image(bgImg,0,0);
@@ -42,17 +41,28 @@ void draw() {
  ellipse(590,50,120,120);
  
  //soldier animation
- image(soldierImg,soldierx,soldiery);
-soldierx+=speedsoldierx;
-soldierx%=640;
+ image(soldierImg,soldierX,soldierY);
+soldierX+=speedSoldierX;
+soldierX%=640;
 
 //robot
-image(robotImg,robotx,roboty);
+image(robotImg,robotX,robotY);
 
-//ray animation
+//laser
 stroke(255,0,0);
 strokeWeight(10);
-line(rayx,rayy,rayx+25,rayy);
-rayx-=speedrayx;
-rayx%=rayx+160;
+line(laserX,laserY,laserX+laserLength,laserY);
+
+//laser animation
+if(laserX>=robotX-160){
+laserX-=speedLaserX;
+laserLength+=speedLaserX;
+if(laserLength>=40){
+laserLength = 40;
+}
+}
+else{
+laserX=robotX+25;
+laserLength=0;
+}
 }
