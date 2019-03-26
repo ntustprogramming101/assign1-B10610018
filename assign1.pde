@@ -56,7 +56,7 @@ line(laserX,laserY,laserX+laserLength,laserY);
 //laser animation
 if(laserX>=robotX-160){
 laserX-=speedLaserX;
-laserLength+=speedLaserX;
+laserLength+=2;
 if(laserLength>=40){
 laserLength = 40;
 }
